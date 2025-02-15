@@ -21,6 +21,7 @@ import { ProjectCard } from "./components/ProjectCard";
 import interviewHub from "../images/InterviewHub.png";
 import Todoist from "../images/Todoist.png";
 import GroceryHub from "../images/GroceryHub.png";
+import Zappose from "../images/Zappose.png";
 import HowWellDoYouKnowMe from "../images/HowWellDoYouKnowMe.png";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
@@ -54,14 +55,14 @@ const projectDetails = {
   },
   zapposClone: {
     title: "Zappos.com Clone",
-    image: GroceryHub, // Make sure to import or define this image
+    image: Zappose, // Make sure to import or define this image
     ghLink: "https://github.com/akmurmu82/zappos-clone/",
     liveLink: "https://zappos-clone-ak.vercel.app/",
     description:
       "A frontend clone of Zappos.com with responsive design and user-friendly interface.",
     details: {
-      features: "Homepage, Product Listing, Product Details, Cart Functionality",
-      responsibility: "Designed and implemented the UI components",
+      features: "Authenticatino, Product Listing, Product Details, Cart Functionality",
+      responsibility: "Designed and implemented the UI components. Build the database.",
       techStack: "React, Tailwind CSS, Express, MongoDB, Mongoose, React Redux",
     },
   },
