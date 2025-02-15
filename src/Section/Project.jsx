@@ -52,6 +52,19 @@ const projectDetails = {
       techStack: "HTML, CSS, JavaScript, React",
     },
   },
+  zapposClone: {
+    title: "Zappos.com Clone",
+    image: GroceryHub, // Make sure to import or define this image
+    ghLink: "https://github.com/akmurmu82/zappos-clone/",
+    liveLink: "https://zappos-clone-ak.vercel.app/",
+    description:
+      "A frontend clone of Zappos.com with responsive design and user-friendly interface.",
+    details: {
+      features: "Homepage, Product Listing, Product Details, Cart Functionality",
+      responsibility: "Designed and implemented the UI components",
+      techStack: "React, Tailwind CSS, Express, MongoDB, Mongoose, React Redux",
+    },
+  },
   groceryHub: {
     title: "GroceryHub",
     image: GroceryHub,
