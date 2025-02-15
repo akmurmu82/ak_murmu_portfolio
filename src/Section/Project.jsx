@@ -32,7 +32,7 @@ const projectDetails = {
     ghLink: "https://github.com/akmurmu82/InterviewIQ-Hub",
     liveLink: "https://fe-interviewiq-hub.netlify.app/",
     description:
-      "A collaborative full stack project made to solve real life problem.",
+      "A collaborative full stack project made to solve real-life problems.",
     details: {
       features: "Landing page, MCQ listing, Result according to marks",
       responsibility: "Implemented the Backend by myself",
@@ -43,13 +43,13 @@ const projectDetails = {
     title: "Todoist",
     image: Todoist,
     ghLink: "https://github.com/akmurmu82/Todoist-clone",
-    liveLink: "https://heartfelt-alfajores-94d7dc.netlify.app/",
+    liveLink: "https://todoist-clone-ak.vercel.app/",
     description: "Made this in a LinkedIn Challenge in just 7 days.",
     details: {
       features:
-        "Add Todo, Edit todo and delete todo, collapsable sidepanel, UI resembled original site.",
+        "Add Todo, Edit todo and delete todo, collapsable side panel, UI resembled original site.",
       responsibility: "Navbar, Footer",
-      techStack: "HTML, CSS, Java Script, React",
+      techStack: "HTML, CSS, JavaScript, React",
     },
   },
   groceryHub: {
@@ -57,7 +57,7 @@ const projectDetails = {
     image: GroceryHub,
     ghLink: "https://github.com/akmurmu82/Grocery_Hub",
     liveLink: "https://velvety-chebakia-b2faa1.netlify.app/",
-    description: "Collaborative project made in Cunstruct week in just 7 days",
+    description: "Collaborative project made in Construct week in just 7 days",
     details: {
       features: "Multiple product listing, Car",
       responsibility: "Navbar, Footer",
