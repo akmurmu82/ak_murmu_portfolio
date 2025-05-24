@@ -92,7 +92,7 @@ function Home() {
                 // onClick={downloadResume}
                 as="a"
                 target="_blank"
-                href="/Amit Kumar Murmu-Resume.pdf"
+                href="https://drive.google.com/file/d/1-Ok53vq9xYVc-QjIdW6IM6KJZln7tvcv/view?usp=sharing"
                 // download
                 fontSize={{ base: 20, lg: 14 }}
                 m={"20px"}
