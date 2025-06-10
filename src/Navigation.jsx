@@ -6,6 +6,7 @@ import { GrGraphQl } from "react-icons/gr";
 import { GrProjects } from "react-icons/gr";
 import { IoIosMailOpen } from "react-icons/io";
 import ThemeToggleButton from "./components/ThemeToggleButton";
+import ChatBotWidget from "./components/ChatBotWidget";
 
 function Navigation() {
   const [activeSection, setActiveSection] = useState("");
@@ -91,6 +92,7 @@ function Navigation() {
           icon={<IoIosMailOpen />}
           isActive={activeSection === "contact"}
         />
+        <ChatBotWidget/>
       </Flex>
     </Box>
   );
