@@ -34,7 +34,7 @@ const ChatBotWidget = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("https://chatbot-for-portfolio.onrender.com/ask", {
+      const res = await axios.post(`${import.meta.env.CHATBOT_API}/ask`, {
         question: input,
         history: newHistory,
       });
@@ -60,31 +60,18 @@ const ChatBotWidget = () => {
   return (
     <>
       {/* Floating Icon */}
-      {/* // Wrap the IconButton inside a MotionBox to make it draggable */}
-<MotionBox
-  drag
-  dragConstraints={{ top: window.innerHeight, bottom: window.innerHeight, left: 0, right: window.innerWidth }}
-  dragElastic={0.2}
-  dragTransition={{ bounceStiffness: 600, bounceDamping: 10 }}
-  position="absolute"
-  bottom="5"
-  right="5"
-  zIndex="9999"
-  cursor="grab"
->
-  <IconButton
-    icon={<Box padding={5}><ChatIcon /></Box>}
-    isRound
-    size="lg"
-    bg={theme.colors.jhataak || "blue.500"}
-    color="white"
-    boxShadow="lg"
-    _hover={{ bg: theme.colors.secondary || "blue.600" }}
-    onClick={onToggle}
-    aria-label="Open chat"
-  />
-</MotionBox>
 
+      <IconButton
+        icon={<Box padding={1}><ChatIcon /></Box>}
+        isRound
+        size="lg"
+        bg={theme.colors.jhataak || "blue.500"}
+        color="white"
+        boxShadow="lg"
+        _hover={{ bg: theme.colors.secondary || "blue.600" }}
+        onClick={onToggle}
+        aria-label="Open chat"
+      />
 
       {/* Chat Window */}
       {isOpen && (
