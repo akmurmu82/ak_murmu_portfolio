@@ -18,79 +18,9 @@ import {
 } from "@chakra-ui/react";
 import MyHeading from "./components/Heading";
 import { ProjectCard } from "./components/ProjectCard";
-import interviewHub from "../images/InterviewHub.png";
-import Todoist from "../images/Todoist.png";
-import GroceryHub from "../images/GroceryHub.png";
-import Zappose from "../images/Zappose.png";
-import HowWellDoYouKnowMe from "../images/HowWellDoYouKnowMe.png";
 import { FaGithub } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
-
-const projectDetails = {
-  interviewHub: {
-    title: "Interview Hub",
-    image: interviewHub,
-    ghLink: "https://github.com/akmurmu82/InterviewIQ-Hub",
-    liveLink: "https://fe-interviewiq-hub.netlify.app/",
-    description:
-      "A collaborative full stack project made to solve real-life problems.",
-    details: {
-      features: "Landing page, MCQ listing, Result according to marks",
-      responsibility: "Implemented the Backend by myself",
-      techStack: "Reack, Chakra UI, Node.js, Express, Mongoose",
-    },
-  },
-  todoist: {
-    title: "Todoist",
-    image: Todoist,
-    ghLink: "https://github.com/akmurmu82/Todoist-clone",
-    liveLink: "https://todoist-clone-ak.vercel.app/",
-    description: "Made this in a LinkedIn Challenge in just 7 days.",
-    details: {
-      features:
-        "Add Todo, Edit todo and delete todo, collapsable side panel, UI resembled original site.",
-      responsibility: "Navbar, Footer",
-      techStack: "HTML, CSS, JavaScript, React",
-    },
-  },
-  zapposClone: {
-    title: "Zappos.com Clone",
-    image: Zappose, // Make sure to import or define this image
-    ghLink: "https://github.com/akmurmu82/zappos-clone/",
-    liveLink: "https://zappos-clone-ak.vercel.app/",
-    description:
-      "A frontend clone of Zappos.com with responsive design and user-friendly interface.",
-    details: {
-      features: "Authenticatino, Product Listing, Product Details, Cart Functionality",
-      responsibility: "Designed and implemented the UI components. Build the database.",
-      techStack: "React, Tailwind CSS, Express, MongoDB, Mongoose, React Redux",
-    },
-  },
-  groceryHub: {
-    title: "GroceryHub",
-    image: GroceryHub,
-    ghLink: "https://github.com/akmurmu82/Grocery_Hub",
-    liveLink: "https://velvety-chebakia-b2faa1.netlify.app/",
-    description: "Collaborative project made in Construct week in just 7 days",
-    details: {
-      features: "Multiple product listing, Car",
-      responsibility: "Navbar, Footer",
-      techStack: "HTML, CSS, Java Script, JSON server",
-    },
-  },
-  howWellDoYouKnowMe: {
-    title: "How Well Do You Know Me",
-    image: HowWellDoYouKnowMe, // replace this with the appropriate image variable or path
-    ghLink: "https://github.com/akmurmu82/HowWellDoYouKnowMe", // update if needed
-    liveLink: "https://howwelldoyouknowme2.vercel.app/", // replace with the actual live link
-    description: "An interactive quiz app where I can test how well my friends know me.",
-    details: {
-      features: "User login, personalized quiz, scoring system, dynamic leaderboard, downloadable certificates",
-      responsibility: "Implemented the frontend with React, designed the database schema.",
-      techStack: "React, Chakra UI, Node.js, Express, MongoDB",
-    },
-  },  
-};
+import projectDetails from "../assets/projectDetails";
 
 function Projects() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -111,7 +41,7 @@ function Projects() {
     >
       <Box>
         <MyHeading title="PROJECTS" />
-        <Grid templateColumns={{ base: "1fr", lg: "repeat(3, 1fr)" }} gap={10}>
+        <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={5}>
           {Object.values(projectDetails).map((project, index) => (
             <ProjectCard
               key={index}

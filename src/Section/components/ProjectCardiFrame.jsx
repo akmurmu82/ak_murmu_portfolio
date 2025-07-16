@@ -47,18 +47,16 @@ export const ProjectCard = ({
           overflow="hidden"
           borderRadius="md"
           boxShadow="lg"
-          pb={10}
-          h={{ base: "40vh", lg: "40vh" }}
+          h={{ base: "30vh", lg: "40vh" }}
           transition="transform 0.3s"
           _hover={{ transform: "scale(1.05)" }}
         >
-          <Image src={image} alt={title} borderRadius="md" objectFit="contain" w="100%" h="100%" />
+          <Image src={image} alt={title} borderRadius="md" objectFit="cover" w="100%" h="100%" />
           <Text
             position="absolute"
             bottom={0}
             width="100%"
             bg={useColorModeValue("gray.800", "gray.900")}
-            // opacity="90%"
             color="white"
             textAlign="center"
             p={2}
