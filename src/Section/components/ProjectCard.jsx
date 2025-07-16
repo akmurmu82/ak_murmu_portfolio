@@ -18,6 +18,8 @@ import {
 import { FaGithub, FaInfoCircle, FaLaptop, FaMobileAlt } from "react-icons/fa";
 import { GoLinkExternal } from "react-icons/go";
 import { motion } from "framer-motion";
+import laptopImage from "../../images/laptopTransparentImage.png";
+import mobile from "../../images/Mobile.png";
 
 export const ProjectCard = ({
   title,
@@ -132,18 +134,39 @@ export const ProjectCard = ({
           <ModalHeader>{title} - Live Preview</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Stack direction={{ base: "column", md: "row" }} spacing={6} h="80vh">
+            <Stack
+              direction={{ base: "column", md: "row" }}
+              spacing={8}
+              h={{ base: "auto", md: "80vh" }}
+              align="center"
+              justify="center"
+              p={4}
+            >
               {/* Desktop Preview */}
-              <Box flex={2} position="relative">
+              <Box
+                flex={2}
+                position="relative"
+                w={{ base: "100%", md: "50%" }}
+                h={{ base: "400px", md: "90%" }}
+                minH="400px"
+              >
+                <Text
+                  fontSize="lg"
+                  fontWeight="bold"
+                  mb={4}
+                  textAlign="center"
+                  color={useColorModeValue("gray.700", "gray.200")}
+                >
+                  Desktop View
+                </Text>
                 <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  width="100%"
-                  height="100%"
-                  border="12px solid #1a202c"
+                  w="100%"
+                  h={{ base: "350px", md: "calc(100% - 40px)" }}
+                  border="12px solid"
+                  borderColor={useColorModeValue("gray.800", "gray.200")}
                   borderRadius="lg"
                   boxShadow="xl"
+                  overflow="hidden"
                 >
                   <iframe
                     src={liveLink}
@@ -155,26 +178,41 @@ export const ProjectCard = ({
                   />
                 </Box>
               </Box>
-              
-              {/* Mobile Preview */}
-              <Box flex={1} position="relative" display={{ base: "none", md: "block" }}>
+
+              {/* Mobile Preview - Hidden on small screens */}
+              <Box
+                flex={1}
+                position="relative"
+                display={{ base: "block", md: "block" }}
+                w={{ base: "100%", md: "40%" }}
+                h="100%"
+              >
+                <Text
+                  fontSize="lg"
+                  fontWeight="bold"
+                  mb={4}
+                  textAlign="center"
+                  color={useColorModeValue("gray.700", "gray.200")}
+                >
+                  Mobile View
+                </Text>
                 <Box
-                  position="absolute"
-                  top="50%"
-                  left="50%"
-                  transform="translate(-50%, -50%)"
-                  width="320px"
-                  height="568px"
-                  border="12px solid #1a202c"
+                  position="relative"
+                  mx="auto"
+                  w="270px"
+                  h="500px"
+                  border="12px solid"
+                  borderColor={useColorModeValue("gray.800", "gray.200")}
                   borderRadius="2xl"
                   boxShadow="xl"
+                  overflow="hidden"
                 >
                   <iframe
                     src={liveLink}
                     title={`${title} Mobile Preview`}
                     width="100%"
                     height="100%"
-                    style={{ 
+                    style={{
                       border: 'none',
                       transform: 'scale(0.9)',
                       transformOrigin: '0 0',
