@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import emailjs from "emailjs-com";
+import { useContext, useState, useRef } from "react";
 import {
   Box,
   Flex,
@@ -21,13 +20,14 @@ import { MdLocationOn, MdOutlineLocationOn } from "react-icons/md";
 import MyHeading from "./components/Heading";
 import { ThemeContext } from "../AllContext";
 import { IoIosSend } from "react-icons/io";
-import CustomToast from "./components/CustomToast";
-import { motion } from "framer-motion";
+import AnimatedSection from "../components/ui/AnimatedSection";
+import { useEmailJS } from "../hooks/useEmailJS";
 
 const GetInTouch = () => {
   const { isDark } = useContext(ThemeContext);
   const theme = useTheme();
-  const toast = useToast();
+  const { sendEmail, isLoading } = useEmailJS();
+  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: "",
     number: "",
@@ -44,47 +44,23 @@ const GetInTouch = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_86yi4br",
-        "template_s7kkrds",
-        e.target,
-        "Yr50FP_5lajaEFbZp"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          toast({
-            position: "top",
-            duration: 5000,
-            isClosable: true,
-            render: ({ onClose }) => (
-              <CustomToast
-                title="Feedback Sent"
-                description="Thanks for your feedback. I'll sure reply to this."
-                onClose={onClose}
-              />
-            ),
-          });
-        },
-        (error) => {
-          console.log(error.text);
-          alert("Failed to send the message. Please try again.");
-        }
-      );
-
-    // Reset form fields
-    setFormData({
-      name: "",
-      number: "",
-      subject: "",
-      email: "",
-      message: "",
-    });
+    
+    const result = await sendEmail(formData, formRef);
+    
+    if (result.success) {
+      // Reset form fields
+      setFormData({
+        name: "",
+        number: "",
+        subject: "",
+        email: "",
+        message: "",
+      });
+    }
   };
+
   return (
     <>
       <MyHeading title="GET IN TOUCH" />
@@ -98,18 +74,16 @@ const GetInTouch = () => {
         <Flex
           direction={{ base: "column", md: "row" }}
           justifyContent="space-around"
+          gap={8}
         >
           <Box w={{ base: "100%", md: "40%" }} mb={{ base: 10, md: 0 }}>
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: false }}
-            >
+            <AnimatedSection direction="left" delay={0.2}>
               <Heading as="h2" size="lg" mb={5}>
                 DON&apos;T BE SHY!
               </Heading>
-            </motion.div>
+            </AnimatedSection>
+            
+            <AnimatedSection direction="left" delay={0.4}>
             <Text
               fontSize={{ base: "lg", lg: "20px" }}
               textAlign={"left"}
@@ -120,10 +94,11 @@ const GetInTouch = () => {
               new projects, creative ideas or opportunities to be part of your
               visions.
             </Text>
+            </AnimatedSection>
 
+            <AnimatedSection direction="left" delay={0.6}>
             <Box mb={5}>
               <Flex align="center" mb={3}>
-                {/* <MdLocationOn w={7} h={10} color={theme.colors.jhataak} mr={5} /> */}
                 <Icon
                   as={MdLocationOn}
                   w={7}
@@ -179,20 +154,18 @@ const GetInTouch = () => {
                 </VStack>
               </Flex>
             </Box>
+            </AnimatedSection>
           </Box>
+          
           <Box w={{ base: "100%", md: "60%" }}>
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: false }}
-            >
+            <AnimatedSection direction="right" delay={0.2}>
               <Heading as="h2" size="lg" mb={5}>
                 Message me
               </Heading>
-            </motion.div>
+            </AnimatedSection>
 
-            <form onSubmit={handleSubmit}>
+            <AnimatedSection direction="right" delay={0.4}>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <Flex direction="column" gap={3} color="#000">
                 <Input
                   required
@@ -240,11 +213,18 @@ const GetInTouch = () => {
                 />
                 <HStack>
                   <Button
+                    isLoading={isLoading}
+                    loadingText="Sending..."
                     rightIcon={<Icon as={IoIosSend} />}
                     colorScheme="yellow"
                     type="submit"
                     bg={theme.colors.jhataak}
                     alignSelf="flex-start"
+                    _hover={{ 
+                      transform: "translateY(-2px)",
+                      boxShadow: "lg"
+                    }}
+                    transition="all 0.2s"
                   >
                     SEND MESSAGE
                   </Button>
@@ -254,6 +234,7 @@ const GetInTouch = () => {
                 </HStack>
               </Flex>
             </form>
+            </AnimatedSection>
           </Box>
         </Flex>
       </Box>

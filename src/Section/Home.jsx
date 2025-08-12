@@ -8,7 +8,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { FaDownload } from "react-icons/fa";
-import { motion } from "framer-motion";
+import AnimatedSection from "../components/ui/AnimatedSection";
 import profilePic from "../images/Profile_pic.jpg";
 
 function Home() {
@@ -36,14 +36,15 @@ function Home() {
             boxShadow={"-10px 6px 0px 8px rgba(191,176,176,0.75)"}
             w={{ base: "60%", lg: "30%" }}
             ml={5}
+            loading="eager"
+            transition="all 0.3s ease"
+            _hover={{
+              transform: "scale(1.05)",
+              boxShadow: "-15px 10px 0px 12px rgba(191,176,176,0.85)"
+            }}
           />
           <Box maxW={{ base: "100%", lg: "60%" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: false }}
-            >
+            <AnimatedSection delay={0.2}>
               <Text
                 fontSize={{ base: "2xl", lg: "5xl" }}
                 color={theme.colors.jhataak}
@@ -52,14 +53,9 @@ function Home() {
               >
                 I&apos;M AMIT KUMAR MURMU
               </Text>
-            </motion.div>
-            {/* <MyHeading title="I'M AMIT KUMAR MURMU" /> */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: false }}
-            >
+            </AnimatedSection>
+            
+            <AnimatedSection delay={0.4}>
               <Text
                 fontFamily={theme.fonts.text}
                 fontSize={{ base: "xl", lg: "3xl" }}
@@ -68,7 +64,9 @@ function Home() {
               >
                 A Full Stack Developer
               </Text>
-            </motion.div>
+            </AnimatedSection>
+            
+            <AnimatedSection delay={0.6}>
             <Text
               fontSize={{ base: "lg", lg: "23px" }}
               textAlign={"left"}
@@ -80,27 +78,27 @@ function Home() {
               applications using a technology stack that includes MongoDB,
               Express, React, Node.js, and various other libraries.
             </Text>
-            <motion.div
-              initial={{ opacity: 0, x: -200 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: false }}
-            >
+            </AnimatedSection>
+            
+            <AnimatedSection direction="left" delay={0.8}>
               <Button
-                _hover={{ backgroundColor: theme.colors.jhataak }}
+                _hover={{ 
+                  backgroundColor: theme.colors.jhataak,
+                  transform: "translateY(-2px)",
+                  boxShadow: "lg"
+                }}
                 style={{ ...theme.button }}
-                // onClick={downloadResume}
                 as="a"
                 target="_blank"
                 href="https://drive.google.com/file/d/1-Ok53vq9xYVc-QjIdW6IM6KJZln7tvcv/view?usp=sharing"
-                // download
                 fontSize={{ base: 20, lg: 14 }}
                 m={"20px"}
                 rightIcon={<Icon as={FaDownload} />}
+                transition="all 0.3s ease"
               >
                 DOWNLOAD CV
               </Button>
-            </motion.div>
+            </AnimatedSection>
           </Box>
         </Flex>
       </Box>

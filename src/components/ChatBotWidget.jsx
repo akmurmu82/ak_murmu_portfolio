@@ -7,6 +7,10 @@ import {
   useDisclosure,
   useTheme,
   Spinner,
+  Text,
+  VStack,
+  HStack,
+  Avatar
 } from "@chakra-ui/react";
 import { ChatIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
@@ -34,7 +38,13 @@ const ChatBotWidget = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${import.meta.env.CHATBOT_API}/ask`, {
+      const apiUrl = import.meta.env.VITE_CHATBOT_API || import.meta.env.CHATBOT_API;
+      
+      if (!apiUrl) {
+        throw new Error("Chatbot API URL not configured");
+      }
+      
+      const res = await axios.post(`${apiUrl}/ask`, {
         question: input,
         history: newHistory,
       });
@@ -44,9 +54,13 @@ const ChatBotWidget = () => {
         { role: "assistant", content: res.data.answer || "No response." },
       ]);
     } catch (error) {
+      console.error("Chatbot error:", error);
       setHistory([
         ...newHistory,
-        { role: "assistant", content: "Error getting response." },
+        { 
+          role: "assistant", 
+          content: "Sorry, I'm currently unavailable. Please use the contact form to reach out directly!" 
+        },
       ]);
     } finally {
       setLoading(false);
@@ -62,15 +76,35 @@ const ChatBotWidget = () => {
       {/* Floating Icon */}
 
       <IconButton
-        icon={<Box padding={1}><ChatIcon /></Box>}
+        icon={
+          <Box padding={1} position="relative">
+            <ChatIcon />
+            {!isOpen && (
+              <Box
+                position="absolute"
+                top="-2px"
+                right="-2px"
+                w="8px"
+                h="8px"
+                bg="green.400"
+                borderRadius="full"
+                animation="pulse 2s infinite"
+              />
+            )}
+          </Box>
+        }
         isRound
         size="lg"
         bg={theme.colors.jhataak || "blue.500"}
         color="white"
         boxShadow="lg"
-        _hover={{ bg: theme.colors.secondary || "blue.600" }}
+        _hover={{ 
+          bg: theme.colors.secondary || "blue.600",
+          transform: "scale(1.1)"
+        }}
         onClick={onToggle}
         aria-label="Open chat"
+        transition="all 0.2s"
       />
 
       {/* Chat Window */}
@@ -89,37 +123,52 @@ const ChatBotWidget = () => {
           flexDirection="column"
           overflow="hidden"
           zIndex="1000"
+          border="1px solid"
+          borderColor="gray.200"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Box p={3} bg="gray.100" fontWeight="bold">
-            Portfolio Chatbot
+          <Box p={3} bg={theme.colors.jhataak} color="white" fontWeight="bold">
+            <HStack>
+              <Avatar size="sm" name="Portfolio Bot" bg="white" color={theme.colors.jhataak} />
+              <VStack align="start" spacing={0}>
+                <Text fontSize="sm">Portfolio Assistant</Text>
+                <Text fontSize="xs" opacity={0.8}>Online</Text>
+              </VStack>
+            </HStack>
           </Box>
 
           <Box flex="1" overflowY="auto" p={3}>
             {history.map((msg, idx) => (
-              <Box
+              <VStack
                 key={idx}
-                bg={msg.role === "user" ? "blue.100" : "gray.100"}
-                borderRadius="md"
-                p={2}
+                align={msg.role === "user" ? "flex-end" : "flex-start"}
                 mb={2}
-                maxW="80%"
-                alignSelf={msg.role === "user" ? "flex-end" : "flex-start"}
+                w="100%"
               >
-                {msg.content}
-              </Box>
+                <Box
+                  bg={msg.role === "user" ? theme.colors.jhataak : "gray.100"}
+                  color={msg.role === "user" ? "white" : "black"}
+                  borderRadius="lg"
+                  p={3}
+                  maxW="85%"
+                  fontSize="sm"
+                  boxShadow="sm"
+                >
+                  {msg.content}
+                </Box>
+              </VStack>
             ))}
             {loading && (
-              <Box fontSize="sm" color="gray.500">
+              <HStack fontSize="sm" color="gray.500">
                 <Spinner size="sm" mr={2} />
-                Typing...
-              </Box>
+                <Text>Typing...</Text>
+              </HStack>
             )}
             <div ref={chatEndRef} />
           </Box>
 
-          <Box p={3} borderTop="1px solid" display="flex" gap={2}>
+          <Box p={3} borderTop="1px solid" borderColor="gray.200" display="flex" gap={2}>
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -127,8 +176,19 @@ const ChatBotWidget = () => {
               placeholder="Ask something..."
               size="sm"
               flex="1"
+              borderRadius="full"
             />
-            <Button size="sm" colorScheme="blue" onClick={sendMessage}>
+            <Button 
+              size="sm" 
+              bg={theme.colors.jhataak}
+              color="white"
+              onClick={sendMessage}
+              isDisabled={!input.trim() || loading}
+              borderRadius="full"
+              _hover={{
+                bg: theme.colors.secondary
+              }}
+            >
               Send
             </Button>
           </Box>

@@ -1,6 +1,7 @@
 import MyHeading from "./components/Heading";
 import { Box, VStack, Image, Flex } from "@chakra-ui/react";
 import EducationCard from "./components/EducationCard";
+import AnimatedSection from "../components/ui/AnimatedSection";
 import edu from "../images/edu.jpg";
 
 function Education() {
@@ -16,10 +17,20 @@ function Education() {
         direction={{ base: "column", lg: "row" }}
       >
         <Box w={{ base: "90%", lg: "40%" }}>
+          <AnimatedSection direction="left" delay={0.2}>
           <Image
             src={edu}
             alignSelf={{ base: "center", lg: "initial" }} // Align the image to the center on small screens, initial alignment on larger screens
+            loading="lazy"
+            borderRadius="lg"
+            boxShadow="lg"
+            transition="all 0.3s ease"
+            _hover={{
+              transform: "scale(1.05)",
+              boxShadow: "xl"
+            }}
           />
+          </AnimatedSection>
         </Box>
         <VStack spacing={10} align="left">
           <EducationCard
