@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { ChatIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import axios from "axios";
 
 const MotionBox = motion(Box);
@@ -27,8 +27,29 @@ const ChatBotWidget = () => {
   ]);
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
+  const chatWidgetRef = useRef(null);
   const theme = useTheme();
 
+  // Handle click outside to close
+  const handleClickOutside = useCallback((event) => {
+    if (chatWidgetRef.current && !chatWidgetRef.current.contains(event.target)) {
+      if (isOpen) {
+        onToggle();
+      }
+    }
+  }, [isOpen, onToggle]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, handleClickOutside]);
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -72,7 +93,7 @@ const ChatBotWidget = () => {
   }, [history]);
 
   return (
-    <>
+    <Box ref={chatWidgetRef}>
       {/* Floating Icon */}
 
       <IconButton
@@ -111,7 +132,7 @@ const ChatBotWidget = () => {
       {isOpen && (
         <MotionBox
           position="fixed"
-          bottom="20"
+          bottom="24"
           right="5"
           color="#000"
           width="320px"
@@ -127,6 +148,7 @@ const ChatBotWidget = () => {
           borderColor="gray.200"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
         >
           <Box p={3} bg={theme.colors.jhataak} color="white" fontWeight="bold">
             <HStack>
@@ -194,7 +216,7 @@ const ChatBotWidget = () => {
           </Box>
         </MotionBox>
       )}
-    </>
+    </Box>
   );
 };
 
