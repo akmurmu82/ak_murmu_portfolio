@@ -3,6 +3,7 @@ import Todoist from "../images/Todoist.png";
 import GroceryHub from "../images/GroceryHub.png";
 import Zappose from "../images/Zappose.png";
 import HowWellDoYouKnowMe from "../images/HowWellDoYouKnowMe.png";
+import LibraryManagementSystem from "../images/LibraryManagementSystem.png";
 
 const projectDetails = {
     interviewHub: {
@@ -70,7 +71,7 @@ const projectDetails = {
     },
     LibraryManagementApp: {
         title: "MyBook Library",
-        image: HowWellDoYouKnowMe, // Make sure to import or define this image
+        image: LibraryManagementSystem, // Make sure to import or define this image
         ghLink: "https://github.com/akmurmu82/library-management-app",
         liveLink: "https://library-management-app-ak.vercel.app/",
         description:
