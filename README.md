@@ -54,15 +54,15 @@ Welcome to my personal portfolio website — a space where I showcase my project
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/portfolio.git
-   cd portfolio
+   git clone https://github.com/akmurmu82/ak_murmu_portfolio
+   cd ak_murmu_portfolio
    ```
 
 2. **Install Dependencies**
    ```bash
     npm install
-    Set Up Environment Variables
     ```
+    Set Up Environment Variables
 
 3. **Create a .env file in the root.**
 
@@ -95,11 +95,11 @@ Welcome to my personal portfolio website — a space where I showcase my project
 
 Feel free to drop me a message via the contact form or connect with me:
 
-Email: [amitkumar65521@gmail.com]
+Email: amitkumar65521@gmail.com
 
-LinkedIn: [amit-kumar-murmu82]
+LinkedIn: [\[amit-kumar-murmu82\]](https://www.linkedin.com/in/amit-kumar-murmu82/)
 
-Live Site: [akmurmudeveloper.vercel.app]
+Live Site: akmurmudeveloper.vercel.app
 
 📄 License
 This project is licensed under the MIT License.
