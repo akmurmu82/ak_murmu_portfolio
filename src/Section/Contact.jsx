@@ -146,10 +146,10 @@ const GetInTouch = () => {
                 <VStack alignItems={"flex-start"} gap={0}>
                   <Text>LINKEDIN</Text>
                   <Link
-                    href="https://linkedin.com/in/amit-kumar-murmu82"
+                    href="https://linkedin.com/in/akmurmu82"
                     isExternal
                   >
-                    amit-kumar-murmu82
+                    akmurmu82
                   </Link>
                 </VStack>
               </Flex>
