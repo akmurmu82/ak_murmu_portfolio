@@ -180,6 +180,7 @@ const GetInTouch = () => {
                   required
                   placeholder="YOUR NUMBER *"
                   name="number"
+                  type="tel"
                   value={formData.number}
                   bg={theme.colors.light}
                   border="none"
