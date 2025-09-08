@@ -198,6 +198,7 @@ const GetInTouch = () => {
                   required
                   placeholder="YOUR EMAIL *"
                   name="email"
+                  type="email"
                   value={formData.email}
                   bg={theme.colors.light}
                   border="none"
